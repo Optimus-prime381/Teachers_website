@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Requests - SHOBS Academy</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: #222;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 100px;
+            border-bottom: 3px solid #1bc9c9;
+        }
+        .logo-box {
+            background: #e5d3ce;
+            color: #222;
+            width: 120px;
+            height: 90px;
+            margin: 10px 0 10px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        .logo-icon {
+            font-size: 2rem;
+        }
+        .logo-text {
+            font-size: 1.1rem;
+            font-family: 'Times New Roman', serif;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .navbar-right {
+            margin-left: auto;
+            display: flex;
+            gap: 24px;
+        }
+        .navbar-btn {
+            background: #1bc9c9;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar-btn:hover {
+            background: #fff;
+            color: #222;
+        }
+        .main-content {
+            max-width: 1100px;
+            margin: 60px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 10px;
+            box-shadow: 0 0 16px rgba(0,0,0,0.08);
+            padding: 40px 32px;
+            min-height: 500px;
+        }
+        .demo-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #1bc9c9;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .demo-form label {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #a98c7c;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .demo-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1.5px solid #1bc9c9;
+            font-size: 1rem;
+            font-family: 'Pacifico', cursive;
+        }
+        .demo-form button {
+            background: #1bc9c9;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 8px;
+        }
+        .demo-form button:hover {
+            background: #222;
+            color: #fff;
+        }
+        .error-msg {
+            color: #e57373;
+            font-family: 'Pacifico', cursive;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .demo-table-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.7rem;
+            color: #1bc9c9;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .demo-table {
+            margin: 0 auto;
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 8px rgba(0,0,0,0.07);
+        }
+        .demo-table th, .demo-table td {
+            border: 1px solid #e5d3ce;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .demo-table th {
+            background: #e5d3ce;
+            font-family: 'Pacifico', cursive;
+            color: #222;
+        }
+        @media (max-width: 900px) {
+            .main-content { padding: 18px 4vw; }
+            .demo-table th, .demo-table td { font-size: 0.95rem; }
+        }
+        @media (max-width: 600px) {
+            .main-content { padding: 8px 1vw; }
+            .demo-table th, .demo-table td { font-size: 0.85rem; padding: 8px 2px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-box">
+            <div class="logo-icon">&#127891;</div>
+            <div class="logo-text">SHOBS<br>ACADEMY</div>
+        </div>
+        <div class="navbar-right">
+            <button class="navbar-btn" onclick="goDashboard()">Dashboard</button>
+            <button class="navbar-btn" onclick="goZoom()">Zoom Links</button>
+            <button class="navbar-btn" onclick="goProfile()">Profile</button>
+            <button class="navbar-btn" onclick="goDemoRequests()">Demo Requests</button>
+        </div>
+    </div>
+    <div class="main-content" id="mainContent">
+        <div class="demo-title">Demo Requests Login</div>
+        <form class="demo-form" id="demoLoginForm" onsubmit="return handleDemoLogin(event)">
+            <label for="accountName">Account Name</label>
+            <input type="text" id="accountName" autocomplete="username" required>
+            <label for="accountPassword">Password</label>
+            <input type="password" id="accountPassword" autocomplete="current-password" required>
+            <label for="specialCode">6-digit Code</label>
+            <input type="password" id="specialCode" maxlength="6" required>
+            <div class="error-msg" id="demoError" style="display:none;"></div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        function goDashboard() { window.location.href = 'index.html'; }
+        function goZoom() { window.location.href = 'zoom.html'; }
+        function goProfile() { window.location.href = 'profile.html'; }
+        function goDemoRequests() { window.location.href = 'demo_requests.html'; }
+
+        // Load demo requests from localStorage (set by home page)
+        function getDemoRequests() {
+            let requests = [];
+            try {
+                requests = JSON.parse(localStorage.getItem('demoRequests') || '[]');
+            } catch (e) { requests = []; }
+            return Array.isArray(requests) ? requests : [];
+        }
+
+        function handleDemoLogin(event) {
+            event.preventDefault();
+            const account = document.getElementById('accountName').value.trim();
+            const password = document.getElementById('accountPassword').value;
+            const code = document.getElementById('specialCode').value.trim();
+            const errorDiv = document.getElementById('demoError');
+            if (
+                account === "shobsacademy" &&
+                password === "20120209" &&
+                code === "123456"
+            ) {
+                // Show demo requests table from localStorage
+                const requests = getDemoRequests();
+                let tableRows = '';
+                if (requests.length === 0) {
+                    tableRows = `<tr><td colspan="8" style="color:#a98c7c;">No demo requests found.</td></tr>`;
+                } else {
+                    tableRows = requests.map(r => `
+                        <tr>
+                            <td>${r.student_name || ''}</td>
+                            <td>${r.parent_name || ''}</td>
+                            <td>${r.age || ''}</td>
+                            <td>${r.class || ''}</td>
+                            <td>${r.subject || ''}</td>
+                            <td>${r.timing || ''}</td>
+                            <td>${r.dates || ''}</td>
+                            <td>${r.phone || ''}</td>
+                        </tr>
+                    `).join('');
+                }
+                document.getElementById('mainContent').innerHTML = `
+                    <div class="demo-table-title">Demo Requests</div>
+                    <table class="demo-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Parent Name</th>
+                                <th>Age</th>
+                                <th>Class</th>
+                                <th>Subject</th>
+                                <th>Timing</th>
+                                <th>Dates</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableRows}
+                        </tbody>
+                    </table>
+                `;
+            } else {
+                errorDiv.textContent = "Invalid credentials or code.";
+                errorDiv.style.display = "block";
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>

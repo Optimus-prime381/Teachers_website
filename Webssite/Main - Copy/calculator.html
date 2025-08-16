@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator - SHOBS Academy</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.7.0/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; }
+        .container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); padding: 32px; }
+        h2 { color: #1bc9c9; font-family: 'Pacifico', cursive; }
+        .input-row { display: flex; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+        .input-row label { min-width: 80px; }
+        .input-row input, .input-row select { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+        .dates-table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+        .dates-table th, .dates-table td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        .dates-table th { background: #e5d3ce; }
+        .highlight { background: #1bc9c9; color: #fff; font-weight: bold; }
+        .btn { background: #1bc9c9; color: #fff; border: none; padding: 0.6rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: bold; margin-right: 10px; }
+        .btn:hover { background: #17a2a2; }
+        .result-table { margin-top: 30px; }
+        .pdf-btn { background: #007bff; }
+        .nav-bar { background: #222; padding: 24px 0 12px 0; display: flex; justify-content: center; gap: 32px; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <button class="btn" onclick="window.location.href='Teachers_website/index.html'">Dashboard</button>
+        <button class="btn" onclick="window.location.href='Teachers_website/zoom_links.html'">Zoom Links</button>
+        <button class="btn" onclick="window.location.href='Teachers_website/profile.html'">Profile</button>
+        <button class="btn" onclick="window.location.href='Teachers_website/demo_requests.html'">Demo Requests</button>
+        <button class="btn" onclick="window.location.href='calculator.html'">Calculator</button>
+    </div>
+    <div class="container">
+        <h2>Calculator</h2>
+        <div class="input-row">
+            <label for="studentName">Name:</label>
+            <input type="text" id="studentName" required>
+            <label for="month">Month:</label>
+            <input type="text" id="month" placeholder="e.g. June 2024" required>
+        </div>
+        <div style="margin-bottom:12px;">
+            <button class="btn" onclick="addDateRow()">Add Date</button>
+        </div>
+        <table class="dates-table" id="datesTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Topic</th>
+                    <th>Hour(s)</th>
+                    <th>Fees per Hour</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be added here -->
+            </tbody>
+        </table>
+        <div style="margin-top:18px;">
+            <button class="btn" onclick="calculateFees()">Calculate</button>
+        </div>
+        <div id="resultSection" class="result-table" style="display:none;">
+            <h3>Summary</h3>
+            <table class="dates-table" id="resultTable"></table>
+            <div style="margin-top:18px;">
+                <button class="btn pdf-btn" onclick="downloadPDF()">Download PDF</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let dateRows = [];
+
+        function addDateRow() {
+            const tbody = document.getElementById('datesTable').querySelector('tbody');
+            const rowIdx = dateRows.length;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="date" required></td>
+                <td><input type="text" placeholder="Topic" required></td>
+                <td><input type="number" min="0.1" step="0.1" placeholder="Hours" required></td>
+                <td><input type="number" min="0" step="1" placeholder="Fees/Hour" required></td>
+                <td><button class="btn" style="background:#e57373;" onclick="removeDateRow(this)">Remove</button></td>
+            `;
+            tbody.appendChild(tr);
+            dateRows.push(tr);
+        }
+
+        function removeDateRow(btn) {
+            const tr = btn.closest('tr');
+            tr.remove();
+            // Remove from dateRows array
+            dateRows = dateRows.filter(row => row !== tr);
+        }
+
+        function calculateFees() {
+            const name = document.getElementById('studentName').value.trim();
+            const month = document.getElementById('month').value.trim();
+            if (!name || !month) {
+                alert('Please enter Name and Month.');
+                return;
+            }
+            const tbody = document.getElementById('datesTable').querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            if (rows.length === 0) {
+                alert('Please add at least one date.');
+                return;
+            }
+            let data = [];
+            let total = 0;
+            for (let row of rows) {
+                const cells = row.querySelectorAll('input');
+                const date = cells[0].value;
+                const topic = cells[1].value.trim();
+                const hour = parseFloat(cells[2].value);
+                const feePerHour = parseFloat(cells[3].value);
+                if (!date || !topic || isNaN(hour) || isNaN(feePerHour)) {
+                    alert('Please fill all fields in each row.');
+                    return;
+                }
+                const fee = hour * feePerHour;
+                total += fee;
+                data.push({ date, topic, hour, feePerHour, fee });
+            }
+            // Show result table
+            const resultSection = document.getElementById('resultSection');
+            const resultTable = document.getElementById('resultTable');
+            resultTable.innerHTML = `
+                <tr>
+                    <th>Date</th>
+                    <th>Topic</th>
+                    <th>Hour(s)</th>
+                    <th>Fees per Hour</th>
+                    <th>Total Fee</th>
+                </tr>
+                ${data.map(d => `
+                    <tr>
+                        <td>${d.date}</td>
+                        <td>${d.topic}</td>
+                        <td>${d.hour}</td>
+                        <td>${d.feePerHour}</td>
+                        <td>${d.fee.toFixed(2)}</td>
+                    </tr>
+                `).join('')}
+            `;
+            resultSection.style.display = 'block';
+            window._calcData = { name, month, data, total };
+        }
+
+        function downloadPDF() {
+            const { name, month, data, total } = window._calcData || {};
+            if (!data) return;
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            doc.setFontSize(16);
+            doc.text(`SHOBS Academy - Calculator`, 14, 16);
+            doc.setFontSize(12);
+            doc.text(`Name: ${name}`, 14, 26);
+            doc.text(`Month: ${month}`, 14, 34);
+            const tableData = data.map(d => [
+                d.date, d.topic, d.hour, d.feePerHour, d.fee.toFixed(2)
+            ]);
+            doc.autoTable({
+                head: [['Date', 'Topic', 'Hour(s)', 'Fees per Hour', 'Total Fee']],
+                body: tableData,
+                startY: 40,
+                theme: 'grid',
+                styles: { halign: 'center' }
+            });
+            // Highlight total fees
+            const finalY = doc.lastAutoTable.finalY || 40;
+            doc.autoTable({
+                body: [[{ content: 'Total Fees', colSpan: 4, styles: { halign: 'right', fillColor: [27,201,201], textColor: 255, fontStyle: 'bold' } }, 
+                        { content: total.toFixed(2), styles: { fillColor: [27,201,201], textColor: 255, fontStyle: 'bold' } }]],
+                startY: finalY + 2,
+                theme: 'plain'
+            });
+            doc.save(`Calculator_${name}_${month}.pdf`);
+        }
+    </script>
+</body>
+</html>

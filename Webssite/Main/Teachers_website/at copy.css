@@ -1,0 +1,268 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+    color: #222;
+    min-height: 100vh;
+}
+.navbar {
+    background: #222;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    height: 100px;
+    border-bottom: 3px solid #1bc9c9;
+}
+.logo-box {
+    background: #e5d3ce;
+    color: #222;
+    width: 120px;
+    height: 90px;
+    margin: 10px 0 10px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+.logo-icon {
+    font-size: 2rem;
+}
+.logo-text {
+    font-size: 1.1rem;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 1px;
+    text-align: center;
+}
+.navbar-right {
+    margin-left: auto;
+    display: flex;
+    gap: 24px;
+}
+.navbar-btn {
+    background: #1bc9c9;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+.navbar-btn:hover {
+    background: #fff;
+    color: #222;
+}
+.attendance-main-content {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    background: linear-gradient(135deg, #f7fafc 60%, #e5d3ce 100%);
+    border-radius: 16px;
+    box-shadow: 0 0 24px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+}
+.attendance-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem;
+    color: #1bc9c9;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    text-align: left;
+}
+#attendanceSummary {
+    min-width: 320px;
+    max-width: 380px;
+    margin-right: 0;
+    margin-left: 0;
+    flex-shrink: 0;
+    background: linear-gradient(120deg, #1bc9c9 60%, #e5d3ce 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(27,201,201,0.10);
+    padding: 0 0 0 0;
+    font-family: 'Pacifico', cursive, sans-serif;
+    font-size: 1.1rem;
+}
+#studentsAttendanceContainer {
+    flex: 1 1 0;
+    min-width: 0;
+}
+.student-attendance-card {
+    background: linear-gradient(120deg, #fff 80%, #e5d3ce 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 16px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+    padding: 28px 28px 20px 28px;
+    margin-bottom: 36px;
+    width: 100%;
+    max-width: 700px;
+    transition: box-shadow 0.2s;
+}
+.student-attendance-card:hover {
+    box-shadow: 0 4px 32px rgba(27,201,201,0.18), 0 4px 32px rgba(0,0,0,0.12);
+}
+.student-attendance-header {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1bc9c9;
+    margin-bottom: 18px;
+    text-align: left;
+    letter-spacing: 1px;
+    font-family: 'Pacifico', cursive, sans-serif;
+}
+.student-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 18px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+.student-table th, .student-table td {
+    border: 1px solid #e5d3ce;
+    padding: 8px 10px;
+    text-align: center;
+    font-size: 1rem;
+}
+.student-table th {
+    background: linear-gradient(90deg, #1bc9c9 80%, #a98c7c 100%);
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+.student-table td {
+    background: #f7fafc;
+}
+.student-attendance-actions {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 12px;
+}
+.student-date-input {
+    padding: 7px 12px;
+    border-radius: 6px;
+    border: 1.5px solid #1bc9c9;
+    font-size: 1rem;
+    background: #e5f7f7;
+    color: #222;
+    transition: border 0.2s;
+}
+.student-date-input:focus {
+    border: 2px solid #1bc9c9;
+    outline: none;
+}
+.clear-btn {
+    background: #888 !important;
+    color: #fff !important;
+}
+.attendance-btn {
+    background: linear-gradient(90deg, #1bc9c9 70%, #a98c7c 100%);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.7rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.5px;
+}
+.attendance-btn:hover {
+    background: linear-gradient(90deg, #1bc9c9 40%, #222 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(27,201,201,0.18);
+}
+.present-select, .hours-input, .topic-input {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1.5px solid #1bc9c9;
+    font-size: 1rem;
+    background: #e5f7f7;
+    color: #222;
+    transition: border 0.2s;
+}
+.present-select:focus, .hours-input:focus, .topic-input:focus {
+    border: 2px solid #1bc9c9;
+    outline: none;
+}
+.present-select {
+    min-width: 90px;
+    background: #e5f7f7;
+}
+.hours-input {
+    width: 70px;
+}
+.topic-input {
+    width: 120px;
+}
+@media (max-width: 1100px) {
+    .attendance-main-content {
+        flex-direction: column;
+        gap: 24px;
+        padding: 24px 8px;
+    }
+    #attendanceSummary {
+        margin-bottom: 32px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 900px) {
+    .attendance-main-content {
+        padding: 24px 8px;
+    }
+    .attendance-table th, .attendance-table td {
+        padding: 6px 4px;
+    }
+}
+@media (max-width: 700px) {
+    .student-attendance-card {
+        max-width: 98vw;
+        padding: 10px 2vw;
+    }
+    .student-table th, .student-table td {
+        padding: 4px 2px;
+    }
+}
+@media (max-width: 600px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 0;
+        font-size: 1.1rem;
+    }
+    .logo-box {
+        margin: 0 0 10px 0;
+        width: 90px;
+        height: 60px;
+    }
+    .navbar-right {
+        flex-direction: column;
+        gap: 8px;
+        margin-left: 0;
+    }
+    .attendance-main-content {
+        margin: 20px 0 0 0;
+        padding: 12px 2vw;
+    }
+}
+@media (max-width: 400px) {
+    .logo-box {
+        width: 70px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+    .attendance-title {
+        font-size: 1.2rem;
+    }
+}

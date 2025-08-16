@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShobsAcademy</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<style>
+    .navbar {
+        background: #222;
+        color: #fff;
+        padding: 0;
+        font-size: 1.5rem;
+        font-family: sans-serif;
+        display: flex;
+        align-items: center;
+        height: 100px;
+        border-bottom: 3px solid #1bc9c9;
+    }
+    .logo-box {
+        background: #e5d3ce;
+        color: #222;
+        width: 120px;
+        height: 90px;
+        margin: 10px 0 10px 40px; /* Increased left margin for more space */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+    }
+    .logo-box .logo-icon {
+        font-size: 2rem;
+        margin-bottom: 4px;
+    }
+    .logo-box .logo-text {
+        font-size: 1.1rem;
+        font-family: 'Times New Roman', serif;
+        letter-spacing: 1px;
+        text-align: center;
+    }
+    .hero-section {
+        width: 100vw;
+        min-height: 500px;
+        background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80vw;
+        max-width: 1200px;
+    }
+    .hero-img {
+        width: 500px;
+        height: 350px;
+        background: #fff;
+        border-radius: 0;
+        overflow: hidden;
+        margin-right: 40px;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+        border: 5px solid #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .hero-text {
+        color: #fff;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        min-width: 320px;
+        max-width: 500px;
+        padding-left: 20px;
+    }
+    .hero-contact {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        color: #fff;
+        text-align: left;
+    }
+    .hero-title {
+        font-family: 'Pacifico', cursive;
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        line-height: 1.2;
+        text-align: left;
+    }
+    .hero-btn {
+        background: #fff;
+        color: #222;
+        border: none;
+        padding: 0.7rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 2px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: background 0.2s, color 0.2s;
+        margin-top: 10px;
+    }
+    .hero-btn:hover {
+        background: #1bc9c9;
+        color: #fff;
+    }
+
+    .modal-bg {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .modal {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        min-width: 300px;
+        position: relative;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 1.5rem;
+        color: #888;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .modal button {
+        margin: 0.5rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        background: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .modal input {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    .about-section {
+        background: #181818;
+        color: #e5e5e5;
+        padding: 60px 0 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .about-content {
+        max-width: 1100px;
+        width: 90vw;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    .about-text {
+        flex: 1.2;
+        padding-right: 20px;
+    }
+    .about-title {
+        font-family: 'Pacifico', cursive;
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #fff;
+        border-bottom: 2px solid #e5d3ce;
+        width: fit-content;
+    }
+    .about-mission-title {
+        font-size: 1.5rem;
+        margin: 20px 0 10px 0;
+        color: #fff;
+        font-family: serif;
+    }
+    .about-img {
+        flex: 1;
+        min-width: 300px;
+        max-width: 400px;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 8px rgba(0,0,0,0.15);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .gallery-section {
+        background: #111;
+        padding: 40px 0 30px 0;
+    }
+    .gallery-title {
+        color: #e5d3ce;
+        font-family: 'Pacifico', cursive;
+        font-size: 1.5rem;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .gallery-line {
+        border: none;
+        border-top: 1px solid #e5d3ce;
+        width: 60%;
+        margin: 0 auto 30px auto;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 18px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex; /* Added display flex */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center items horizontally */
+    }
+    .gallery-img {
+        width: 320px;
+        height: 220px;
+        background: #fff;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 0 8px rgba(0,0,0,0.10);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 9px;
+    }
+    .gallery-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image covers the box */
+        object-position: center; /* Center the image */
+        display: block;
+        transition: transform 0.3s;
+    }
+    .gallery-img img:hover {
+        transform: scale(1.05);
+    }
+    .contact-section {
+        background: #181818;
+        color: #fff;
+        padding: 1cm 0 1cm 0;
+    }
+
+    /* Navbar right buttons */
+    .navbar-right {
+        margin-left: auto;
+        display: flex;
+        gap: 10px;
+    }
+    .demo-btn-navbar {
+        background: #1bc9c9;
+        color: #fff;
+        border: none;
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: background 0.2s, color 0.2s;
+    }
+    .demo-btn-navbar:hover {
+        background: #fff;
+        color: #222;
+    }
+
+    /* Navbar modal */
+    .navbar-modal-bg {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .navbar-modal {
+        background: #222;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+        min-width: 300px;
+        position: relative;
+        color: #fff;
+    }
+    .navbar-modal-close {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 1.5rem;
+        color: #888;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+    }
+    .navbar-modal button {
+        margin: 0.5rem;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        background: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    .navbar-modal input {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        width: 80%;
+        font-size: 1rem;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+        .hero-content {
+            flex-direction: column;
+            align-items: center;
+            width: 95vw;
+        }
+        .hero-img {
+            margin-right: 0;
+            margin-bottom: 24px;
+            width: 90vw;
+            max-width: 400px;
+            height: 220px;
+        }
+        .hero-text {
+            padding-left: 0;
+            align-items: center;
+            min-width: unset;
+            max-width: 90vw;
+            text-align: center;
+        }
+        .about-content {
+            flex-direction: column;
+            gap: 24px;
+            align-items: center;
+        }
+        .about-img {
+            min-width: 220px;
+            max-width: 90vw;
+            height: 180px;
+        }
+        .about-img img {
+            height: 100%;
+        }
+        .gallery-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+        .gallery-img {
+            width: 90vw;
+            max-width: 350px;
+            height: 180px;
+        }
+        .contact-section > div {
+            flex-direction: column;
+            gap: 24px;
+            padding: 1rem;
+        }
+        .contact-section [style*="flex:1;"], 
+        .contact-section [style*="flex:1.2;"] {
+            max-width: 95vw !important;
+            min-width: unset !important;
+        }
+    }
+    @media (max-width: 600px) {
+        .navbar {
+            flex-direction: column;
+            height: auto;
+            padding: 10px 0;
+            font-size: 1.1rem;
+        }
+        .logo-box {
+            margin: 0 0 10px 0; /* Remove left margin on small screens for centering */
+            width: 90px;
+            height: 60px;
+        }
+        .navbar-right {
+            flex-direction: column;
+            gap: 8px;
+            margin-left: 0;
+        }
+        .hero-section {
+            min-height: 320px;
+            padding: 20px 0;
+        }
+        .hero-img {
+            width: 95vw;
+            max-width: 320px;
+            height: 140px;
+        }
+        .about-section {
+            padding: 30px 0 20px 0;
+        }
+        .about-title, .about-mission-title {
+            font-size: 1.2rem;
+        }
+        .gallery-img {
+            width: 95vw;
+            max-width: 320px;
+            height: 120px;
+        }
+        .contact-section {
+            padding: 20px 0 20px 0;
+        }
+        .modal, .navbar-modal {
+            min-width: 90vw;
+            padding: 1rem;
+        }
+    }
+    @media (max-width: 400px) {
+        .logo-box {
+            width: 70px;
+            height: 40px;
+            font-size: 0.8rem;
+        }
+        .hero-title {
+            font-size: 1.2rem;
+        }
+        .about-title, .about-mission-title {
+            font-size: 1rem;
+        }
+        .gallery-img {
+            height: 80px;
+        }
+        .modal, .navbar-modal {
+            min-width: 98vw;
+            padding: 0.5rem;
+        }
+    }
+</style>
+<body>
+    <div class="navbar">
+        <div class="logo-box" style="cursor:pointer;" onclick="window.location.href='Teachers_website/index.html'">
+            <div class="logo-icon">&#127891;</div>
+            <div class="logo-text">SHOBS<br>ACADEMY</div>
+        </div>
+        <div class="navbar-right">
+            <button class="demo-btn-navbar" onclick="openDemoForm()">Book a Demo Class</button>
+            <div class="navbar-popup-options" style="display:flex;align-items:center;gap:18px;">
+                <span style="color:#fff;font-size:1rem;margin-right:10px;"></span>
+                <button class="demo-btn-navbar" style="margin-right:8px;" onclick="navbarHandleRole('student')">Student</button>
+                <button id="teacherBtn" class="demo-btn-navbar" style="margin-right:8px;">Teacher</button>
+                <button class="demo-btn-navbar" style="margin-right:8px;" onclick="showNavbarParentPrompt()">Parent</button>
+                <span id="navbarParentPromptInline" style="display:none; margin-left:12px;">
+                    <input type="text" id="navbarStudentNameInput" placeholder="Student Name" class="navbar-modal-input" style="margin-right:8px;">
+                    <button class="demo-btn-navbar" style="margin-right:6px;" onclick="navbarSubmitParent()">Continue</button>
+                    <button class="demo-btn-navbar" style="background:#888;" onclick="hideNavbarParentPrompt()">Cancel</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- Demo class registration modal -->
+    <div id="demoFormModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:2000; align-items:center; justify-content:center;">
+        <div style="background:#fff; color:#222; border-radius:10px; padding:2rem 2.5rem; min-width:320px; max-width:95vw; box-shadow:0 2px 16px rgba(0,0,0,0.18); position:relative;">
+            <button onclick="closeDemoForm()" style="position:absolute; top:12px; right:18px; font-size:1.5rem; background:none; border:none; color:#888; cursor:pointer;">&times;</button>
+            <h2 style="font-family:'Pacifico',cursive; color:#1bc9c9; margin-bottom:18px;">Book a Demo Class</h2>
+            <form id="demoForm" onsubmit="submitDemoForm(event)">
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="student_name" placeholder="Student Name" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="parent_name" placeholder="Parent Name" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="number" name="age" placeholder="Student Age" min="1" max="100" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="class" placeholder="Class/Grade" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="subject" placeholder="Subject Needed for Tutoring" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="timing" placeholder="Required Timing (e.g. 5-6pm)" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:14px;">
+                    <input type="text" name="dates" placeholder="Dates Required (e.g. Mon, Wed, Fri)" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <div style="margin-bottom:18px;">
+                    <input type="tel" name="phone" placeholder="Your Phone Number" required style="width:100%;padding:0.6rem;font-size:1rem;border-radius:4px;border:1px solid #ccc;">
+                </div>
+                <button type="submit" style="background:#1bc9c9; color:#fff; border:none; padding:0.7rem 2rem; font-size:1.1rem; border-radius:2px; cursor:pointer; font-family:inherit; font-weight:bold;">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- Navbar popup modal (right side) -->
+    <div id="navbarModalBg" class="navbar-modal-bg" style="display:none;">
+        <div class="navbar-modal">
+            <button class="navbar-modal-close" onclick="closeNavbarModal()" title="Close">&times;</button>
+            <div id="navbarRolePrompt">
+                <p>Are you a:</p>
+                <button onclick="navbarHandleRole('student')">Student</button>
+                <button onclick="navbarHandleRole('teacher')">Teacher</button>
+                <button onclick="navbarHandleRole('parent')">Parent</button>
+            </div>
+            <div id="navbarParentPrompt" style="display:none;">
+                <p>Please enter the student's name:</p>
+                <input type="text" id="navbarStudentNameInput" placeholder="Student Name">
+                <br>
+                <button onclick="navbarSubmitParent()">Continue</button>
+            </div>
+        </div>
+    </div>
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-img">
+                <img src="https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg" alt="Students running in corridor">
+            </div>
+            <div class="hero-text">
+                <div class="hero-contact">+91 9080139734</div>
+                <div class="hero-title">Empower Your<br>Learning Journey</div>
+                <button class="hero-btn" onclick="alert('Please book a demo class!')">Join Now</button>
+            </div>
+        </div>
+    </div>
+    <div class="about-section">
+        <div class="about-content">
+            <div class="about-text">
+                <div class="about-title">About SHOBS ACADEMY</div>
+                <div class="about-mission-title">Our Mission</div>
+                <div>
+                    At SHOBS ACADEMY, our mission is to provide quality educational services that empower students. We believe in fostering a love for learning and helping individuals achieve their academic goals.<br>
+                    We are an online teaching academy.
+                </div>
+            </div>
+            <div class="about-img">
+                <img src="https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg" alt="Books and apple">
+            </div>
+        </div>
+    </div>
+    <div class="gallery-section">
+        <div class="gallery-title">Explore our vibrant moments at SHOBS ACADEMY</div>
+        <hr class="gallery-line">
+        <div class="gallery-grid">
+            <!-- Your provided image (used multiple times for emphasis) -->
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg" alt="Students running in corridor">
+            </div>
+
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/4145192/pexels-photo-4145192.jpeg" alt="Online learning at home">
+            </div>
+
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/5212334/pexels-photo-5212334.jpeg" alt="Teacher with laptop and students">ss
+            </div>
+
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/256401/pexels-photo-256401.jpeg" alt="Teacher helping student">
+            </div>
+
+
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg" alt="Graduation celebration">
+            </div>
+            <!-- More innovative/teaching-related images -->
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/4144222/pexels-photo-4144222.jpeg" alt="Teacher and student with tablet">
+            </div>
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg" alt="Children learning with teacher">
+            </div>
+            <div class="gallery-img">
+                <img src="https://images.pexels.com/photos/256395/pexels-photo-256395.jpeg" alt="Students running in corridor again">
+            </div>
+            <div class="gallery-img">
+                <!-- Replaced broken image with a working Pexels image -->
+                <img src="https://images.pexels.com/photos/4145191/pexels-photo-4145191.jpeg" alt="Classroom illustration">
+            </div>
+        </div>
+    </div>
+    <div class="contact-section">
+        <div style="max-width:1100px; margin:0 auto; display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start; justify-content:center; padding:1cm;">
+            <div style="flex:1; min-width:300px; max-width:400px;">
+                <h2 style="font-family:'Pacifico',cursive; color:#e5d3ce; margin-bottom:18px;">Contact Us</h2>
+                <div style="margin-bottom:18px;">
+                    <strong>Phone:</strong> <a href="tel:+919080139734" style="color:#1bc9c9;">+91 90801 39734</a>
+                </div>
+                <div style="margin-bottom:18px;">
+                    <strong>Email:</strong> <a href="mailto:info@shobsacademy.com" style="color:#1bc9c9;">info@shobsacademy.com</a>
+                </div>
+                <div style="margin-bottom:18px;">
+                    <strong>Address:</strong><br>
+                    246, 5th Street, Balaji Garden,<br>
+                    Press Colony, Coimbatore,<br>
+                    Tamil Nadu, India
+                </div>
+                <button onclick="alert('Demo class booking coming soon!')" style="background:#1bc9c9; color:#fff; border:none; padding:0.7rem 2rem; font-size:1.1rem; border-radius:2px; cursor:pointer; font-family:inherit; font-weight:bold; margin-top:10px;">
+                    Book a Demo Class
+                </button>
+            </div>
+            <div style="flex:1.2; min-width:320px; max-width:600px;">
+                <div style="border-radius:8px; overflow:hidden; box-shadow:0 0 8px rgba(0,0,0,0.15); border:3px solid #fff;">
+                    <iframe
+                        src="https://www.google.com/maps?q=Balaji+Garden+5th+Street,+Press+Colony,+Coimbatore,+Tamil+Nadu,+India&output=embed"
+                        width="100%" height="300" style="border:0; display:block;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Shobs Academy Location"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="roleModal" class="modal-bg">
+        <div class="modal" id="modalContent">
+            <button class="modal-close" onclick="closeModal()" title="Close">&times;</button>
+            <div id="rolePrompt">
+                <p>Are you a:</p>
+                <button onclick="handleRole('student')">Student</button>
+                <button id="popupTeacherBtn" onclick="handleRole('teacher')">Teacher</button>
+                <button onclick="handleRole('parent')">Parent</button>
+            </div>
+            <div id="parentPrompt" style="display:none;">
+                <p>Please enter the student's name:</p>
+                <input type="text" id="studentNameInput" placeholder="Student Name">
+                <br>
+                <button onclick="submitParent()">Continue</button>
+            </div>
+        </div>
+    </div>
+    <!-- Teacher Login/Create Account Popup -->
+    <div id="loginPopup" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.25);z-index:2000;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:12px;max-width:350px;width:90vw;padding:32px 24px;box-shadow:0 2px 16px rgba(0,0,0,0.18);margin:auto;position:relative;">
+            <button onclick="closeLoginPopup()" style="position:absolute;top:8px;right:12px;font-size:1.5rem;background:none;border:none;color:#888;cursor:pointer;">&times;</button>
+            <div id="loginFormBox">
+                <div style="font-family:'Pacifico',cursive;font-size:1.5rem;color:#1bc9c9;margin-bottom:18px;">Teacher Login</div>
+                <form id="loginForm" onsubmit="loginTeacher(event)">
+                    <label style="font-family:'Pacifico',cursive;">Account Name</label>
+                    <input type="text" id="loginAccount" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Password</label>
+                    <input type="password" id="loginPassword" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <div id="loginError" style="color:#e57373;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <button type="submit" class="teacher-card-btn" style="width:100%;">Login</button>
+                </form>
+                <div style="margin-top:10px;text-align:center;">
+                    <span style="font-family:'Pacifico',cursive;">Don't have an account?</span>
+                    <span class="form-link" style="color:#1bc9c9;cursor:pointer;font-family:'Pacifico',cursive;" onclick="showCreateAccount()">Create one</span>
+                </div>
+                <button id="overrideBtn" style="margin-top:16px;background:#e57373;color:#fff;border:none;padding:0.5rem 1.5rem;border-radius:6px;cursor:pointer;font-family:'Pacifico',cursive;">Override Protocol</button>
+                <div id="overrideBox" style="display:none;margin-top:12px;">
+                    <input type="password" id="overrideCode" maxlength="6" placeholder="Enter 6-digit code" style="width:70%;padding:8px 10px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <button onclick="checkOverrideCode()" style="background:#1bc9c9;color:#fff;border:none;padding:0.5rem 1.2rem;border-radius:6px;cursor:pointer;font-family:'Pacifico',cursive;">Submit</button>
+                    <div id="overrideError" style="color:#e57373;font-family:'Pacifico',cursive;display:none;margin-top:6px;"></div>
+                </div>
+            </div>
+            <div id="createFormBox" style="display:none;">
+                <div style="font-family:'Pacifico',cursive;font-size:1.5rem;color:#1bc9c9;margin-bottom:18px;">Create Account</div>
+                <form id="createForm" onsubmit="createTeacherAccount(event)">
+                    <label style="font-family:'Pacifico',cursive;">Name</label>
+                    <input type="text" id="createName" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Account Name</label>
+                    <input type="text" id="createAccount" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Password</label>
+                    <input type="password" id="createPassword" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Confirm Password</label>
+                    <input type="password" id="createConfirm" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <div id="createError" style="color:#e57373;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <div id="createSuccess" style="color:#1bc9c9;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <button type="submit" class="teacher-card-btn" style="width:100%;">Create Account</button>
+                </form>
+                <div style="margin-top:10px;text-align:center;">
+                    <span style="font-family:'Pacifico',cursive;">Already have an account?</span>
+                    <span class="form-link" style="color:#1bc9c9;cursor:pointer;font-family:'Pacifico',cursive;" onclick="showLogin()">Login</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Show modal on load only if not closed in this session
+        window.onload = function() {
+            if (!sessionStorage.getItem('roleModalClosed')) {
+                document.getElementById('roleModal').style.display = 'flex';
+            }
+            // REMOVE: Show teacher name in navbar if logged in (should only be on teacher's page)
+            // const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+            // if (current.name) {
+            //     var nameSpan = document.getElementById('navbarTeacherName');
+            //     nameSpan.textContent = "Teacher: " + current.name;
+            //     nameSpan.style.display = "inline-block";
+            // }
+        };
+
+        function handleRole(role) {
+            if (role === 'student') {
+                window.location.href = 'student.html';
+            } else if (role === 'teacher') {
+                showLoginPopup();
+            } else if (role === 'parent') {
+                document.getElementById('rolePrompt').style.display = 'none';
+                document.getElementById('parentPrompt').style.display = 'block';
+            }
+        }
+
+        function submitParent() {
+            var studentName = document.getElementById('studentNameInput').value.trim();
+            if (studentName) {
+                // You can pass the student name as a query param if needed
+                window.location.href = 'student.html?parent=1&student=' + encodeURIComponent(studentName);
+            } else {
+                alert('Please enter the student\'s name.');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('roleModal').style.display = 'none';
+            sessionStorage.setItem('roleModalClosed', '1');
+        }
+
+        // Navbar modal logic
+        function openNavbarModal() {
+            document.getElementById('navbarModalBg').style.display = 'flex';
+            document.getElementById('navbarRolePrompt').style.display = 'block';
+            document.getElementById('navbarParentPrompt').style.display = 'none';
+        }
+        function closeNavbarModal() {
+            document.getElementById('navbarModalBg').style.display = 'none';
+        }
+        function navbarHandleRole(role) {
+            if (role === 'student') {
+                window.location.href = 'student.html';
+            } else if (role === 'teacher') {
+                window.location.href = 'Teachers_website/index.html'; // Ensure this path is correct
+            }
+        }
+        function showNavbarParentPrompt() {
+            document.getElementById('navbarParentPromptInline').style.display = 'inline-block';
+        }
+        function hideNavbarParentPrompt() {
+            document.getElementById('navbarParentPromptInline').style.display = 'none';
+        }
+        function navbarSubmitParent() {
+            var studentName = document.getElementById('navbarStudentNameInput').value.trim();
+            if (studentName) {
+                window.location.href = 'student.html?parent=1&student=' + encodeURIComponent(studentName);
+            } else {
+                alert('Please enter the student\'s name.');
+            }
+        }
+
+        // Demo class modal logic
+        function openDemoForm() {
+            document.getElementById('demoFormModal').style.display = 'flex';
+        }
+        function closeDemoForm() {
+            document.getElementById('demoFormModal').style.display = 'none';
+        }
+        function submitDemoForm(event) {
+            event.preventDefault();
+            // Collect form data
+            var form = document.getElementById('demoForm');
+            var data = new FormData(form);
+            var body = "";
+            for (const pair of data.entries()) {
+                body += pair[0] + ": " + pair[1] + "\n";
+            }
+            // Send email using mailto (opens user's email client)
+            window.location.href = "mailto:shoba.raaju@gmail.com"
+                + "?subject=" + encodeURIComponent("Demo Class Registration")
+                + "&body=" + encodeURIComponent(body);
+
+            alert('Thank you for registering for a demo class! You will be contacted soon.');
+            closeDemoForm();
+            form.reset();
+        }
+
+        // Teacher login popup logic
+        function showLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'flex';
+            showLogin();
+        }
+        function closeLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
+        }
+        function showCreateAccount() {
+            document.getElementById('loginFormBox').style.display = 'none';
+            document.getElementById('createFormBox').style.display = 'block';
+            document.getElementById('createError').style.display = 'none';
+            document.getElementById('createSuccess').style.display = 'none';
+        }
+        function showLogin() {
+            document.getElementById('loginFormBox').style.display = 'block';
+            document.getElementById('createFormBox').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+        }
+        function createTeacherWebpage(account) {
+            let teacherPages = JSON.parse(localStorage.getItem('teacherPages') || '{}');
+            if (!teacherPages[account]) {
+                teacherPages[account] = true;
+                localStorage.setItem('teacherPages', JSON.stringify(teacherPages));
+            }
+        }
+        function createTeacherAccount(event) {
+            event.preventDefault();
+            const name = document.getElementById('createName').value.trim();
+            const account = document.getElementById('createAccount').value.trim();
+            const password = document.getElementById('createPassword').value;
+            const confirm = document.getElementById('createConfirm').value;
+            const errorDiv = document.getElementById('createError');
+            const successDiv = document.getElementById('createSuccess');
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            if (password !== confirm) {
+                errorDiv.textContent = "Passwords do not match.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            if (password.length < 4) {
+                errorDiv.textContent = "Password must be at least 4 characters.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+            if (teachers[account]) {
+                errorDiv.textContent = "Account name already exists.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            teachers[account] = { name, password };
+            localStorage.setItem('teachers', JSON.stringify(teachers));
+            createTeacherWebpage(account);
+            successDiv.textContent = "Account created! Please login.";
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                showLogin();
+            }, 1200);
+        }
+        // Security lockout logic
+        function getLockInfo(account) {
+            let lock = JSON.parse(localStorage.getItem('teacherLock_' + account) || '{}');
+            return lock;
+        }
+        function setLockInfo(account, lock) {
+            localStorage.setItem('teacherLock_' + account, JSON.stringify(lock));
+        }
+        function clearAllLockInfo() {
+            // Remove all teacherLock_* keys
+            Object.keys(localStorage).forEach(function(key) {
+                if (key.startsWith('teacherLock_')) localStorage.removeItem(key);
+            });
+        }
+
+        function loginTeacher(event) {
+            event.preventDefault();
+            const account = document.getElementById('loginAccount').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.style.display = 'none';
+            let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+            let lock = getLockInfo(account);
+            let now = Date.now();
+
+            // Lockout logic
+            if (lock.lockUntil && now < lock.lockUntil) {
+                let mins = Math.ceil((lock.lockUntil - now) / 60000);
+                errorDiv.textContent = `Account locked. Try again in ${mins} minute(s).`;
+                errorDiv.style.display = 'block';
+                return;
+            }
+
+            if (!teachers[account] || teachers[account].password !== password) {
+                lock.attempts = (lock.attempts || 0) + 1;
+                if (lock.attempts === 10) {
+                    lock.lockUntil = now + 10 * 60 * 1000;
+                    errorDiv.textContent = "Too many failed attempts. Locked for 10 minutes.";
+                } else if (lock.attempts === 15) {
+                    lock.lockUntil = now + 15 * 60 * 1000;
+                    errorDiv.textContent = "Last warning! Locked for 15 minutes.";
+                } else if (lock.attempts === 20) {
+                    lock.lockUntil = now + 24 * 60 * 60 * 1000;
+                    errorDiv.textContent = "Account locked for 1 day due to repeated failures.";
+                } else {
+                    errorDiv.textContent = "Invalid account name or password.";
+                }
+                setLockInfo(account, lock);
+                errorDiv.style.display = 'block';
+                return;
+            }
+            // Reset lock info on success
+            setLockInfo(account, {});
+            localStorage.setItem('currentTeacher', JSON.stringify({ account, name: teachers[account] ? teachers[account].name : "Shoba.R" }));
+            window.location.href = "Teachers_website/index.html";
+        }
+
+        // Override protocol logic
+        document.addEventListener('DOMContentLoaded', function() {
+            // ...existing code...
+            var overrideBtn = document.getElementById('overrideBtn');
+            var overrideBox = document.getElementById('overrideBox');
+            if (overrideBtn) {
+                overrideBtn.onclick = function() {
+                    overrideBox.style.display = overrideBox.style.display === 'block' ? 'none' : 'block';
+                    document.getElementById('overrideError').style.display = 'none';
+                    document.getElementById('overrideCode').value = '';
+                };
+            }
+            // ...existing code for teacherBtn and popupTeacherBtn...
+        });
+
+        function checkOverrideCode() {
+            var code = document.getElementById('overrideCode').value.trim();
+            var errorDiv = document.getElementById('overrideError');
+            if (code === "201284") {
+                clearAllLockInfo();
+                errorDiv.style.display = 'none';
+                alert("Override successful. All lockouts cleared.");
+                document.getElementById('overrideBox').style.display = 'none';
+            } else {
+                errorDiv.textContent = "Incorrect code.";
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Attach showLoginPopup to Teacher button in navbar and popup
+        document.addEventListener('DOMContentLoaded', function() {
+            var teacherBtn = document.getElementById('teacherBtn');
+            if (teacherBtn) {
+                teacherBtn.onclick = showLoginPopup;
+            }
+            var popupTeacherBtn = document.getElementById('popupTeacherBtn');
+            if (popupTeacherBtn) {
+                popupTeacherBtn.onclick = function() {
+                    closeModal();
+                    showLoginPopup();
+                };
+            }
+            // Show Demo Requests button only for Shoba.R
+            const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+            if (current.account === "Shoba.R") {
+                var demoBtn = document.getElementById('demoRequestsBtn');
+                if (demoBtn) demoBtn.style.display = "inline-block";
+            }
+        });
+    </script>
+</body>
+</html>

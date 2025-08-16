@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Profile & Account - SHOBS Academy</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: #222;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 100px;
+            border-bottom: 3px solid #1bc9c9;
+        }
+        .logo-box {
+            background: #e5d3ce;
+            color: #222;
+            width: 100px;
+            height: 100px;
+            margin: 10px 0 10px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+        .logo-text {
+            font-size: 1rem;
+            font-family: 'Pacifico', cursive;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .navbar-right {
+            margin-left: auto;
+            display: flex;
+            gap: 18px;
+        }
+        .navbar-btn {
+            background: #1bc9c9;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.3rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar-btn:hover {
+            background: #fff;
+            color: #222;
+        }
+        .profile-main {
+            max-width: 500px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            box-shadow: 0 0 16px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+            padding: 36px 28px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .profile-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #1bc9c9;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .profile-form label {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #a98c7c;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .profile-form input, .profile-form select, .profile-form textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1.5px solid #1bc9c9;
+            font-size: 1.1rem;
+            background: #e5f7f7;
+            color: #222;
+            font-family: 'Pacifico', cursive;
+            transition: border 0.2s;
+        }
+        .profile-form input:focus, .profile-form select:focus, .profile-form textarea:focus {
+            border: 2px solid #1bc9c9;
+            outline: none;
+        }
+        .profile-btn {
+            background: linear-gradient(90deg, #1bc9c9 70%, #a98c7c 100%);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .profile-btn:hover {
+            background: linear-gradient(90deg, #1bc9c9 40%, #222 100%);
+            color: #fff;
+        }
+        .profile-success {
+            margin-top: 18px;
+            color: #1bc9c9;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        .profile-delete {
+            background: #e57373;
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            margin-top: 18px;
+            margin-bottom: 0;
+        }
+        .profile-delete:hover {
+            background: #c62828;
+        }
+        /* Account box styles */
+        .account-box {
+            max-width: 500px;
+            margin: 32px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            box-shadow: 0 0 16px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+            padding: 32px 28px 24px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .account-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.5rem;
+            color: #1bc9c9;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        .account-label {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #a98c7c;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .account-input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1.5px solid #1bc9c9;
+            font-size: 1.1rem;
+            background: #e5f7f7;
+            color: #222;
+            font-family: 'Pacifico', cursive;
+            transition: border 0.2s;
+        }
+        .account-input:focus {
+            border: 2px solid #1bc9c9;
+            outline: none;
+        }
+        .account-btn {
+            background: linear-gradient(90deg, #1bc9c9 70%, #a98c7c 100%);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .account-btn:hover {
+            background: linear-gradient(90deg, #1bc9c9 40%, #222 100%);
+            color: #fff;
+        }
+        .account-error {
+            color: #e57373;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-family: 'Pacifico', cursive;
+        }
+        .account-success {
+            color: #1bc9c9;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-family: 'Pacifico', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo-box">
+            <div class="logo-icon">&#127891;</div>
+            <div class="logo-text">SHOBS<br>ACADEMY</div>
+        </div>
+        <div class="navbar-right">
+            <button class="navbar-btn" onclick="goDashboard()">Dashboard</button>
+            <button class="navbar-btn" onclick="goZoom()">Zoom Links</button>
+            <button class="navbar-btn" onclick="goDemoRequests()">Demo Requests</button>
+            <button class="navbar-btn" onclick="goProfile()">Profile</button>
+        </div>
+    </div>
+    <div class="profile-main">
+        <div class="profile-title">Profile & Settings</div>
+        <form class="profile-form" id="profileForm" onsubmit="saveProfile(event)">
+            <label for="teacherName">Name</label>
+            <input type="text" id="teacherName" required placeholder="Enter your name">
+
+            <label for="teacherEmail">Email</label>
+            <input type="email" id="teacherEmail" required placeholder="Enter your email">
+
+            <label for="teacherSubjects">Subjects (comma separated)</label>
+            <input type="text" id="teacherSubjects" required placeholder="e.g. Math, Science">
+
+            <label for="teacherAvailability">Availability</label>
+            <input type="text" id="teacherAvailability" required placeholder="e.g. Mon-Fri 5-7pm">
+
+            <label for="teacherBio">Short Bio</label>
+            <textarea id="teacherBio" rows="3" placeholder="Tell us about yourself"></textarea>
+
+            <button type="submit" class="profile-btn">Save Profile</button>
+        </form>
+        <button class="profile-delete" onclick="deleteAccount()">Delete Account</button>
+        <div id="profileSuccess" class="profile-success" style="display:none;">Profile saved!</div>
+    </div>
+    <div class="account-box">
+        <div class="account-title">Account Details</div>
+        <form id="accountForm" onsubmit="updateAccount(event)">
+            <label class="account-label" for="accountName">Account Name</label>
+            <input class="account-input" type="text" id="accountName" required disabled>
+            <label class="account-label" for="accountPassword">Change Password</label>
+            <input class="account-input" type="password" id="accountPassword" placeholder="New password">
+            <label class="account-label" for="accountConfirm">Confirm Password</label>
+            <input class="account-input" type="password" id="accountConfirm" placeholder="Confirm new password">
+            <div id="accountError" class="account-error" style="display:none;"></div>
+            <div id="accountSuccess" class="account-success" style="display:none;"></div>
+            <button type="submit" class="account-btn">Update Account</button>
+        </form>
+    </div>
+    <script>
+        function goDashboard() { window.location.href = 'index.html'; }
+        function goZoom() { window.location.href = 'zoom.html'; }
+        function goDemoRequests() { window.location.href = 'demo_requests.html'; }
+        function goProfile() { window.location.href = 'profile.html'; }
+        function goHome() { window.location.href = '../../home.html'; }
+        function goTeacher() { window.location.href = 'index.html'; }
+        // Save profile to localStorage (for demo)
+        function saveProfile(event) {
+            event.preventDefault();
+            const profile = {
+                name: document.getElementById('teacherName').value.trim(),
+                email: document.getElementById('teacherEmail').value.trim(),
+                subjects: document.getElementById('teacherSubjects').value.trim(),
+                availability: document.getElementById('teacherAvailability').value.trim(),
+                bio: document.getElementById('teacherBio').value.trim()
+            };
+            // Save profile for current teacher
+            const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+            if (current.account) {
+                let profiles = JSON.parse(localStorage.getItem('teacherProfiles') || '{}');
+                profiles[current.account] = profile;
+                localStorage.setItem('teacherProfiles', JSON.stringify(profiles));
+            }
+            document.getElementById('profileSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('profileSuccess').style.display = 'none';
+            }, 2000);
+        }
+
+        // Load profile and account info if exists
+        window.onload = function() {
+            const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+            if (!current.account) {
+                alert("Please login first.");
+                window.location.href = "../../home.html";
+                return;
+            }
+            // Profile
+            let profiles = JSON.parse(localStorage.getItem('teacherProfiles') || '{}');
+            const profile = profiles[current.account] || {};
+            if (profile.name) document.getElementById('teacherName').value = profile.name;
+            if (profile.email) document.getElementById('teacherEmail').value = profile.email;
+            if (profile.subjects) document.getElementById('teacherSubjects').value = profile.subjects;
+            if (profile.availability) document.getElementById('teacherAvailability').value = profile.availability;
+            if (profile.bio) document.getElementById('teacherBio').value = profile.bio;
+            // Account
+            document.getElementById('accountName').value = current.account;
+        }
+
+        // Delete account
+        function deleteAccount() {
+            if (!confirm("Are you sure you want to delete your account? This cannot be undone.")) return;
+            const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+            if (current.account) {
+                let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+                let profiles = JSON.parse(localStorage.getItem('teacherProfiles') || '{}');
+                let teacherPages = JSON.parse(localStorage.getItem('teacherPages') || '{}');
+                delete teachers[current.account];
+                delete profiles[current.account];
+                delete teacherPages[current.account];
+                localStorage.setItem('teachers', JSON.stringify(teachers));
+                localStorage.setItem('teacherProfiles', JSON.stringify(profiles));
+                localStorage.setItem('teacherPages', JSON.stringify(teacherPages));
+                localStorage.removeItem('currentTeacher');
+                alert("Account deleted.");
+                window.location.href = "../../home.html";
+            }
+        }
+
+        // Update account password
+        function updateAccount(event) {
+            event.preventDefault();
+            const password = document.getElementById('accountPassword').value;
+            const confirm = document.getElementById('accountConfirm').value;
+            const errorDiv = document.getElementById('accountError');
+            const successDiv = document.getElementById('accountSuccess');
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+            if (password || confirm) {
+                if (password !== confirm) {
+                    errorDiv.textContent = "Passwords do not match.";
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                if (password.length < 4) {
+                    errorDiv.textContent = "Password must be at least 4 characters.";
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                const current = JSON.parse(localStorage.getItem('currentTeacher') || '{}');
+                if (current.account) {
+                    let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+                    if (teachers[current.account]) {
+                        teachers[current.account].password = password;
+                        localStorage.setItem('teachers', JSON.stringify(teachers));
+                        successDiv.textContent = "Password updated!";
+                        successDiv.style.display = 'block';
+                        document.getElementById('accountPassword').value = '';
+                        document.getElementById('accountConfirm').value = '';
+                        setTimeout(() => {
+                            successDiv.style.display = 'none';
+                        }, 2000);
+                    }
+                }
+            } else {
+                errorDiv.textContent = "Enter a new password to update.";
+                errorDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

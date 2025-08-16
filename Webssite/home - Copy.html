@@ -1,0 +1,307 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Login / Create Account - SHOBS Academy</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        .center-box {
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            box-shadow: 0 0 16px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+            padding: 36px 28px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .form-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #1bc9c9;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .form-label {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #a98c7c;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1.5px solid #1bc9c9;
+            font-size: 1.1rem;
+            background: #e5f7f7;
+            color: #222;
+            font-family: 'Pacifico', cursive;
+            transition: border 0.2s;
+        }
+        .form-input:focus {
+            border: 2px solid #1bc9c9;
+            outline: none;
+        }
+        .form-btn {
+            background: linear-gradient(90deg, #1bc9c9 70%, #a98c7c 100%);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        .form-btn:hover {
+            background: linear-gradient(90deg, #1bc9c9 40%, #222 100%);
+            color: #fff;
+        }
+        .form-link {
+            color: #1bc9c9;
+            text-decoration: underline;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-size: 1rem;
+        }
+        .form-link:hover {
+            color: #a98c7c;
+        }
+        .form-error {
+            color: #e57373;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-family: 'Pacifico', cursive;
+        }
+        .form-success {
+            color: #1bc9c9;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-family: 'Pacifico', cursive;
+        }
+        /* Popup styles */
+        #loginPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.25);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        #loginPopup > div {
+            background: #fff;
+            border-radius: 12px;
+            max-width: 350px;
+            width: 90vw;
+            padding: 32px 24px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+            margin: auto;
+            position: relative;
+        }
+        #loginPopup button {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-box">
+        <div id="loginFormBox">
+            <div class="form-title">Teacher Login</div>
+            <form id="loginForm" onsubmit="loginTeacher(event)">
+                <label class="form-label" for="loginAccount">Account Name</label>
+                <input class="form-input" type="text" id="loginAccount" required placeholder="Enter account name">
+                <label class="form-label" for="loginPassword">Password</label>
+                <input class="form-input" type="password" id="loginPassword" required placeholder="Enter password">
+                <div id="loginError" class="form-error" style="display:none;"></div>
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+            <div style="margin-top:10px;">
+                <span>Don't have an account?</span>
+                <span class="form-link" onclick="showCreateAccount()">Create Account</span>
+            </div>
+        </div>
+        <div id="createFormBox" style="display:none;">
+            <div class="form-title">Create Teacher Account</div>
+            <form id="createForm" onsubmit="createTeacherAccount(event)">
+                <label class="form-label" for="createName">Name</label>
+                <input class="form-input" type="text" id="createName" required placeholder="Your name">
+                <label class="form-label" for="createAccount">Account Name</label>
+                <input class="form-input" type="text" id="createAccount" required placeholder="Choose account name">
+                <label class="form-label" for="createPassword">Password</label>
+                <input class="form-input" type="password" id="createPassword" required placeholder="Password">
+                <label class="form-label" for="createConfirm">Confirm Password</label>
+                <input class="form-input" type="password" id="createConfirm" required placeholder="Confirm password">
+                <div id="createError" class="form-error" style="display:none;"></div>
+                <div id="createSuccess" class="form-success" style="display:none;"></div>
+                <button type="submit" class="form-btn">Create Account</button>
+            </form>
+            <div style="margin-top:10px;">
+                <span>Already have an account?</span>
+                <span class="form-link" onclick="showLogin()">Login</span>
+            </div>
+        </div>
+    </div>
+    <!-- Add a Teacher button somewhere in your navigation or main content -->
+    <button id="teacherBtn" class="form-btn" style="margin: 32px auto; display: block;">Teacher</button>
+    <!-- Login/Create Account Popup (keep only one, outside .center-box) -->
+    <div id="loginPopup" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.25);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:12px;max-width:350px;width:90vw;padding:32px 24px;box-shadow:0 2px 16px rgba(0,0,0,0.18);margin:auto;position:relative;">
+            <button onclick="closeLoginPopup()" style="position:absolute;top:8px;right:12px;font-size:1.5rem;background:none;border:none;color:#888;cursor:pointer;">&times;</button>
+            <div id="loginFormBox">
+                <div style="font-family:'Pacifico',cursive;font-size:1.5rem;color:#1bc9c9;margin-bottom:18px;">Teacher Login</div>
+                <form id="loginForm" onsubmit="loginTeacher(event)">
+                    <label style="font-family:'Pacifico',cursive;">Account Name</label>
+                    <input type="text" id="loginAccount" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Password</label>
+                    <input type="password" id="loginPassword" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <div id="loginError" style="color:#e57373;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <button type="submit" class="teacher-card-btn" style="width:100%;">Login</button>
+                </form>
+                <div style="margin-top:10px;text-align:center;">
+                    <span style="font-family:'Pacifico',cursive;">Don't have an account?</span>
+                    <span class="form-link" style="color:#1bc9c9;cursor:pointer;font-family:'Pacifico',cursive;" onclick="showCreateAccount()">Create one</span>
+                </div>
+            </div>
+            <div id="createFormBox" style="display:none;">
+                <div style="font-family:'Pacifico',cursive;font-size:1.5rem;color:#1bc9c9;margin-bottom:18px;">Create Account</div>
+                <form id="createForm" onsubmit="createTeacherAccount(event)">
+                    <label style="font-family:'Pacifico',cursive;">Name</label>
+                    <input type="text" id="createName" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Account Name</label>
+                    <input type="text" id="createAccount" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Password</label>
+                    <input type="password" id="createPassword" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <label style="font-family:'Pacifico',cursive;">Confirm Password</label>
+                    <input type="password" id="createConfirm" required style="width:100%;padding:8px 10px;margin-bottom:12px;border-radius:6px;border:1.5px solid #1bc9c9;font-family:'Pacifico',cursive;">
+                    <div id="createError" style="color:#e57373;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <div id="createSuccess" style="color:#1bc9c9;font-family:'Pacifico',cursive;display:none;margin-bottom:8px;"></div>
+                    <button type="submit" class="teacher-card-btn" style="width:100%;">Create Account</button>
+                </form>
+                <div style="margin-top:10px;text-align:center;">
+                    <span style="font-family:'Pacifico',cursive;">Already have an account?</span>
+                    <span class="form-link" style="color:#1bc9c9;cursor:pointer;font-family:'Pacifico',cursive;" onclick="showLogin()">Login</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Show login popup when Teacher button is clicked
+        function showLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'flex';
+            showLogin();
+        }
+        function closeLoginPopup() {
+            document.getElementById('loginPopup').style.display = 'none';
+        }
+        function showCreateAccount() {
+            document.getElementById('loginFormBox').style.display = 'none';
+            document.getElementById('createFormBox').style.display = 'block';
+            document.getElementById('createError').style.display = 'none';
+            document.getElementById('createSuccess').style.display = 'none';
+        }
+        function showLogin() {
+            document.getElementById('loginFormBox').style.display = 'block';
+            document.getElementById('createFormBox').style.display = 'none';
+            document.getElementById('loginError').style.display = 'none';
+        }
+        function createTeacherWebpage(account) {
+            let teacherPages = JSON.parse(localStorage.getItem('teacherPages') || '{}');
+            if (!teacherPages[account]) {
+                teacherPages[account] = true;
+                localStorage.setItem('teacherPages', JSON.stringify(teacherPages));
+            }
+        }
+        function createTeacherAccount(event) {
+            event.preventDefault();
+            const name = document.getElementById('createName').value.trim();
+            const account = document.getElementById('createAccount').value.trim();
+            const password = document.getElementById('createPassword').value;
+            const confirm = document.getElementById('createConfirm').value;
+            const errorDiv = document.getElementById('createError');
+            const successDiv = document.getElementById('createSuccess');
+            errorDiv.style.display = 'none';
+            successDiv.style.display = 'none';
+
+            if (password !== confirm) {
+                errorDiv.textContent = "Passwords do not match.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            if (password.length < 4) {
+                errorDiv.textContent = "Password must be at least 4 characters.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+            if (teachers[account]) {
+                errorDiv.textContent = "Account name already exists.";
+                errorDiv.style.display = 'block';
+                return;
+            }
+            teachers[account] = { name, password };
+            localStorage.setItem('teachers', JSON.stringify(teachers));
+            createTeacherWebpage(account);
+            successDiv.textContent = "Account created! Please login.";
+            successDiv.style.display = 'block';
+            setTimeout(() => {
+                showLogin();
+            }, 1200);
+        }
+        function loginTeacher(event) {
+            event.preventDefault();
+            const account = document.getElementById('loginAccount').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.style.display = 'none';
+            let teachers = JSON.parse(localStorage.getItem('teachers') || '{}');
+            // Allow overall controller (Shoba.R) to access any teacher page
+            if (
+                (teachers[account] && teachers[account].password === password) ||
+                (account === "Shoba.R" && password === (teachers["Shoba.R"] ? teachers["Shoba.R"].password : ""))
+            ) {
+                // Save current teacher
+                localStorage.setItem('currentTeacher', JSON.stringify({ account, name: teachers[account] ? teachers[account].name : "Shoba.R" }));
+                // Simulate redirect to teacher's webpage (in real app, redirect to /teachers/{account}/index.html)
+                window.location.href = "Main/Teachers_website/index.html";
+            } else {
+                errorDiv.textContent = "Invalid account name or password.";
+                errorDiv.style.display = 'block';
+            }
+        }
+        // Attach showLoginPopup to Teacher button (button with id="teacherBtn")
+        document.addEventListener('DOMContentLoaded', function() {
+            var teacherBtn = document.getElementById('teacherBtn');
+            if (teacherBtn) {
+                teacherBtn.onclick = showLoginPopup;
+            }
+        });
+    </script>
+</body>
+</html> -->

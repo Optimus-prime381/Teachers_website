@@ -1,0 +1,214 @@
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 60% 40%, #a98c7c 0%, #222 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+        .navbar {
+            background: #222;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            height: 100px;
+            border-bottom: 3px solid #1bc9c9;
+        }
+        .logo-box {
+            background: #e5d3ce;
+            color: #222;
+            width: 100px;
+            height: 100px;
+            margin: 10px 0 10px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+        .logo-text {
+            font-size: 1rem;
+            font-family: 'Pacifico', cursive;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .navbar-right {
+            margin-left: auto;
+            display: flex;
+            gap: 18px;
+        }
+        .navbar-btn {
+            background: #1bc9c9;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.3rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar-btn:hover {
+            background: #fff;
+            color: #222;
+        }
+        .calc-main {
+            max-width: 700px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            box-shadow: 0 0 16px rgba(27,201,201,0.10), 0 2px 16px rgba(0,0,0,0.08);
+            padding: 36px 28px 28px 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calc-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #1bc9c9;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .calc-form label {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.1rem;
+            color: #a98c7c;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .calc-form input, .calc-form select {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+            border: 1.5px solid #1bc9c9;
+            font-size: 1.1rem;
+            background: #e5f7f7;
+            color: #222;
+            font-family: 'Pacifico', cursive;
+            transition: border 0.2s;
+        }
+        .calc-form input:focus {
+            border: 2px solid #1bc9c9;
+            outline: none;
+        }
+        .calc-btn {
+            background: linear-gradient(90deg, #1bc9c9 70%, #a98c7c 100%);
+            color: #fff;
+            border: none;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+            transition: background 0.2s, color 0.2s;
+            letter-spacing: 0.5px;
+        }
+        .calc-btn:hover {
+            background: linear-gradient(90deg, #1bc9c9 40%, #222 100%);
+            color: #fff;
+        }
+        .calc-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            font-family: 'Pacifico', cursive;
+        }
+        .calc-table th, .calc-table td {
+            border: 1px solid #e5d3ce;
+            padding: 8px 10px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .calc-table th {
+            background: linear-gradient(90deg, #1bc9c9 80%, #a98c7c 100%);
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .calc-table td {
+            background: #f7fafc;
+        }
+        .calc-result {
+            margin-top: 24px;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.3rem;
+            color: #222;
+            background: #e5d3ce;
+            border-radius: 8px;
+            padding: 18px 16px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(27,201,201,0.08);
+            position: relative;
+        }
+        .summary-block {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            padding: 0;
+            min-width: 220px;
+            margin: 0 auto 18px auto;
+        }
+        .summary-block-header {
+            background: #222;
+            color: #fff;
+            padding: 10px 0 8px 0;
+            font-weight: bold;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            letter-spacing: 1px;
+            font-family: 'Pacifico', cursive;
+        }
+        .summary-block-body {
+            background: #1bc9c9;
+            border-radius: 0 0 0 0;
+            text-align: center;
+            padding: 18px 0 0 0;
+        }
+        .summary-block-footer {
+            background: #fff;
+            color: #222;
+            padding: 14px 0 14px 0;
+            border-radius: 0 0 12px 12px;
+            text-align: left;
+            font-family: 'Pacifico', cursive;
+        }
+        .close-summary-btn {
+            position: absolute;
+            top: 10px;
+            right: 18px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .calc-btn-recalc {
+            background: #888;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Pacifico', cursive;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        .calc-btn-recalc:hover {
+            background: #222;
+            color: #fff;
+        }
